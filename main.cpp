@@ -7,10 +7,10 @@
 enum { 
     ERR, ADD,
     PRINT, DEL,
-    REC, EXIT,
+     EXIT,
     CENTR, AREA,
     LES_AREA,
-    TRAP, RHOMB,
+     RHOMB,
     SIZE, HELP
 };
 
@@ -21,7 +21,7 @@ void printCoorFE(T In) {
 
 void help() {
     std::cout << "Commands: add, del, print, area, size, quit, help, centr\n";
-    std::cout << "Supported Figures: rectangle, trap, rhombus\n";
+    std::cout << "Supported Figures:  rhombus\n";
     std::cout << "Figure id can be number or target \"all\"\n";
    
 }
@@ -40,8 +40,7 @@ int main() {
     command["add"] = ADD;
     command["print"] = PRINT;
     command["del"] = DEL;
-    command["rec"] = REC;
-    command["rectangle"] = REC;
+   
     command["quit"] = EXIT;
     command["q"] = EXIT;
     command["centr_of"] = CENTR;
@@ -52,7 +51,6 @@ int main() {
     command["less_then"] = LES_AREA;
     command["less"] = LES_AREA;
     command["size"] = SIZE;
-    command["trap"] = TRAP;
     command["rhomb"] = RHOMB;
     command["help"] = HELP;
     command["h"] = HELP;
@@ -66,14 +64,7 @@ int main() {
             case ADD:
                 std::cin >> figType;
                 switch (command[figType]) {
-                    case REC:
-                        if (!( std::cin >> tmpP1 >> tmpP2)) {
-                            std::cout << "Invalid Params\n";
-                            break;
-                        }
-                        vec.push_back(dynamic_cast<Figure<int>*>(new Rectangle<int>(tmpP1, tmpP2)));
-                        std::cout << "Rectangle added\n";
-                        break;
+                    
                     case RHOMB:
                         if (!( std::cin >> tmpP1 >> tmpP2 >> length)) {
                             std::cout << "Invalid Params\n";
@@ -81,14 +72,6 @@ int main() {
                         }
                         vec.push_back(dynamic_cast<Figure<int>*>(new Rhombus<int>(tmpP1, tmpP2, length)));
                         std::cout << "Rhombus added\n";
-                        break;
-                    case TRAP:
-                        if (!( std::cin >> tmpP1 >> tmpP2 >> angle >> length)) {
-                            std::cout << "Invalid Params\n";
-                            break;
-                        }
-                        vec.push_back(dynamic_cast<Figure<int>*>(new Trap<int>(tmpP1, tmpP2, angle, length)));
-                        std::cout << "Trap added\n";
                         break;
                     case ERR:
                         std::cout << "Unknown figure\n";
